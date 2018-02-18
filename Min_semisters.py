@@ -9,34 +9,16 @@ def main():
 
 		adj_list[lists[i][0]].append(lists[i][1])
 
-	incoming_count=apply_DFS(adj_list,n)
+	incoming_count=[0 for i in range(n)]
 
-	#print(incoming_count)
+	for i in range(len(lists)):
+		incoming_count[lists[i][1]]+=1
+
+
+	print(incoming_count)
 
 	num=solve_DAG(incoming_count,adj_list,n)
 	print('Number of min. Semisters:	',num)
-
-
-def apply_DFS(List,n):
-
-	l=[0 for i in range(n)]
-
-	count=0
-
-	list_count=[]
-
-	for i in range(n):
-		list_count.append(i)
-
-	while list_count:
-
-		u=list_count.pop()
-
-		for i in range(len(List[u])):
-
-			l[List[u][i]]=l[List[u][i]]+1
-
-	return l
 
 
 def solve_DAG(count,adj_list,n):
